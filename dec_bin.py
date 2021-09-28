@@ -5,23 +5,45 @@
 #Falta incorporar capacidad para convertir numero decimales con punto decimal a binario
 
 import re
+import math
 
 def decimal_to_binary(decimal):
     """Convierte un número decimal entero positivo a binario."""
     try:
-        cociente = int(decimal)
-        rest_list = []
+        
+        #Obtengo el cociente y la parte fraccionaria del numero decimal
+        fraccion, cociente = math.modf(decimal)
+
+        if cociente == 0 and fraccion == 0:
+            return True, "0"
+
+        #Trato al cociente como entero
+        cociente = int(cociente)
+
+        cociente_rest_list = []
         bit = ""
 
         #Aplica el método de división sucesiva entre 2 al número decimal y a los cocientes
-        while (cociente > 0):
-            residuo = cociente % 2
-            cociente //= 2
-            rest_list.append(residuo)
+        
+        if cociente > 0:
+            while (cociente > 0):
+                residuo = cociente % 2
+                cociente //= 2
+                cociente_rest_list.append(residuo)
 
-        #Itero sobre la lista en reversa para obtener el resultado de la conversión
-        for i in range(len(rest_list) - 1, -1, -1):
-            bit += str(rest_list[i])
+            #Itero sobre la lista en reversa para obtener el resultado de la conversión
+            
+            for i in range(len(cociente_rest_list) - 1, -1, -1):
+                bit += str(cociente_rest_list[i])
+
+        #Obtengo los bits equivalentes a la parte decimal
+        if fraccion > 0:
+            bit += "."
+            for i in range(0, 11):
+                result = fraccion * 2
+                fraccion, cociente = math.modf(result)
+                bit += str(int(cociente))
+                fraccion = fraccion
 
         #Si se pudo convertir, devuelvo True y el resultado de la conversión
         return True, bit
@@ -73,9 +95,9 @@ def main():
 
     
     if option == 1:
-        decimal_number = input("Ingrese el numero decimal que desea convertir a binario: ")
+        decimal_number = float(input("Ingrese el numero decimal que desea convertir a binario: "))
 
-        converted, result = decimal_to_binary(decimal=decimal_number.strip())
+        converted, result = decimal_to_binary(decimal=decimal_number)
 
         if not converted:
             print("El numero decimal ingresado no esta soportado actualmente.")
