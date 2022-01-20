@@ -1,12 +1,14 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 #Programa que convierte de DECIMAL a BINARIO y viceversa
 #Acepta numeros binarios con punto binario
 #Falta incorporar capacidad para convertir numero decimales con punto decimal a binario
 
+#from memory_profiler import profile
 import re
 import math
 
+#@profile
 def decimal_to_binary(decimal):
     """Convierte un número decimal entero positivo a binario."""
     try:
@@ -27,14 +29,15 @@ def decimal_to_binary(decimal):
         
         if cociente > 0:
             while (cociente > 0):
-                residuo = cociente % 2
+                cociente_rest_list.append(cociente % 2)
                 cociente //= 2
-                cociente_rest_list.append(residuo)
 
             #Itero sobre la lista en reversa para obtener el resultado de la conversión
             
-            for i in range(len(cociente_rest_list) - 1, -1, -1):
-                bit += str(cociente_rest_list[i])
+            cociente_rest_list.reverse()
+
+            for elem in cociente_rest_list:
+                bit += str(elem)
 
         #Obtengo los bits equivalentes a la parte decimal
         if fraccion > 0:
@@ -44,6 +47,7 @@ def decimal_to_binary(decimal):
                 fraccion, cociente = math.modf(result)
                 bit += str(int(cociente))
                 fraccion = fraccion
+
 
         #Si se pudo convertir, devuelvo True y el resultado de la conversión
         return True, bit
@@ -114,4 +118,5 @@ def main():
         else:
             print("El numero binario {} equivale a {} en decimal.".format(binary_number, result))
 
-main()
+if __name__ == "__main__":
+    main()
