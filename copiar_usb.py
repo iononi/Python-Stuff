@@ -18,12 +18,9 @@ def copyFull(src, dst):
 	updated_dst = dst.replace("/", "\\")
 	status = subprocess.run(["xcopy", updated_src, updated_dst, "/s", "/e"], capture_output=True)
 	if status.returncode == 0:
-		try:
-			msg = (status.stdout).decode(encoding="UTF-8", errors="ignore")
-			files = msg.replace("\r", "").split("\n")
-			return messagebox.showinfo(title="Files copied successfully", message=files[-2])
-		except UnicodeDecodeError as e:
-			print()
+		msg = (status.stdout).decode(encoding="UTF-8", errors="ignore")
+		files = msg.replace("\r", "").split("\n")
+		return messagebox.showinfo(title="Files copied successfully", message=files[-2])
 	return messagebox.showinfo(title="Oops!", message="Something went wrong in the process :/")
 
 
