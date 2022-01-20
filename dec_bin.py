@@ -8,7 +8,6 @@
 import re
 import math
 
-#@profile
 def decimal_to_binary(decimal):
     """Convierte un número decimal entero positivo a binario."""
     try:
@@ -106,7 +105,7 @@ def main():
         if not converted:
             print("El numero decimal ingresado no esta soportado actualmente.")
         else:
-            print("El numero decimal {} equivale al binario {}.".format(decimal_number, result))
+            print(f"El numero decimal {decimal_number} equivale al binario {result}.")
 
     if option == 2:
         binary_number = input("Ingrese el numbero binario que desea convertir a decimal: ")
@@ -116,7 +115,7 @@ def main():
         if not converted:
             print(result)
         else:
-            print("El numero binario {} equivale a {} en decimal.".format(binary_number, result))
+            print(f"El numero binario {binary_number} equivale a {result} en decimal.")
 
 if __name__ == "__main__":
     main()
