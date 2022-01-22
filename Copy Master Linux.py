@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copy Master is a program to copy files and directories 
-# from src dir to dst dir. This is the windows version.
+# from src dir to dst dir. This is the linux version.
 
 import subprocess
 import tkinter as tk
