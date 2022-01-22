@@ -19,7 +19,7 @@ options:
 1. Convert from decimal to a binary number
 2. Convert from binary to a decimal number
 
-### Converting from decimal to a binary number
+### Converting from decimal to a binary
 To convert from decimal to binary I use the successive divission by two method. Also, the program
 is able to convert a float decimal number using the successive multiplication by two method for the
 decimal part - *after the decimal point* -.
