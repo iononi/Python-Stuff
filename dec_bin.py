@@ -1,11 +1,7 @@
 # !/usr/bin/env python3
 
 #Programa que convierte de DECIMAL a BINARIO y viceversa
-#Acepta numeros binarios con punto binario
-#Falta incorporar capacidad para convertir numero decimales con punto decimal a binario
 
-#from memory_profiler import profile
-from msilib.schema import Error
 import re
 import math
 
