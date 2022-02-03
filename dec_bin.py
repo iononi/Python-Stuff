@@ -5,6 +5,7 @@
 #Falta incorporar capacidad para convertir numero decimales con punto decimal a binario
 
 #from memory_profiler import profile
+from msilib.schema import Error
 import re
 import math
 
@@ -12,6 +13,9 @@ def decimal_to_binary(decimal):
     """Convierte un número decimal entero positivo a binario."""
     try:
         
+        if decimal < 0:
+            raise ValueError("El numero decimal ingresado no es valido.")
+
         #Obtengo el cociente y la parte fraccionaria del numero decimal
         fraccion, cociente = math.modf(decimal)
 
@@ -51,7 +55,7 @@ def decimal_to_binary(decimal):
         #Si se pudo convertir, devuelvo True y el resultado de la conversión
         return True, bit
     except ValueError:
-        #Devuelvo que no se pudo convertir si el numero decimal no es entero
+        #Devuelvo que no se pudo convertir si el numero decimal no es valido
         return False, ""
 
 def binary_to_decimal(binary):
